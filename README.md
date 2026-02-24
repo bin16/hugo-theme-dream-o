@@ -1,3 +1,5 @@
+NOTE: Personal modified version of hugo-theme-dream, trying to keep compatibility with papermod. Not finished, not fully tested.
+
 # 🌱 hugo-theme-dream
 
 ![GitHub Release](https://img.shields.io/github/v/release/g1eny0ung/hugo-theme-dream)
@@ -8,10 +10,12 @@
 >
 > If you are using v2.x, please check the [v2 branch](https://github.com/g1eny0ung/hugo-theme-dream/tree/v2) and its [docs](https://hugo-theme-dream-docs-v2.netlify.app/).
 
-- [Intro](#intro)
-- [Documentation](#documentation)
-- [Examples](#examples)
-- [Publish your site](#publish-your-site)
+- [🌱 hugo-theme-dream](#-hugo-theme-dream)
+  - [Intro](#intro)
+  - [Documentation](#documentation)
+  - [Examples](#examples)
+  - [Publish your site](#publish-your-site)
+  - [License](#license)
 
 ## Intro
 
