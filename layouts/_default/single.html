@@ -48,6 +48,8 @@
         <p class="text-sm">
           {{ if site.Params.Experimental.jsDate }}
             <span data-format="luxon">{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}</span>
+          {{ else if site.Params.dateFormat }}
+            {{ .Date | time.Format site.Params.dateFormat }}
           {{ else }}
             {{ .Date | time.Format "Monday, Jan 2, 2006" }}
           {{ end }}
@@ -58,6 +60,8 @@
           | <span>{{ T "updatedAt" }}
             {{ if site.Params.Experimental.jsDate }}
               <span data-format="luxon">{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}</span>
+            {{ else if site.Params.dateFormat }}
+              {{ .Lastmod | time.Format site.Params.dateFormat }}
             {{ else }}
               {{ .Lastmod | time.Format "Monday, Jan 2, 2006" }}
             {{ end }}</span>
@@ -70,15 +74,26 @@
             {{ partial "author.html" (dict "Params" .Params "template" "single") }}
           {{ end }}
 
-          {{ partial "share.html" . }}
+          {{ if site.Params.showSharesInPost }}
+            {{ partial "share.html" . }}
+          {{ end}}
         </div>
       </header>
 
       <section id="dream-single-post-content" itemprop="articleBody">
         {{ if and .Params.Cover site.Params.showSummaryCoverInPost }}
+          {{ $imgURL := "" }}
+          {{ $imgCaption := "" }}
+          {{ if reflect.IsMap .Params.cover }}
+            {{ $imgURL = .Params.cover.image }}
+            {{ $imgCaption = .Params.cover.caption }}
+          {{ else if .Params.cover }}
+            {{ $imgURL = .Params.cover }}
+          {{ end }}
+
           <figure>
-            <img class="z-30" src="{{ .Params.Cover }}" alt="{{ .Title }}" />
-            {{ with .Params.covercaption }}
+            <img class="z-30" src="{{ $imgURL }}" alt="{{ .Title }}" />
+            {{ with $imgCaption }}
               <figcaption class="text-sm italic text-center mt-2">{{ . }}</figcaption>
             {{ end }}
           </figure>

@@ -56,6 +56,7 @@ siteStartYear = 2016
 # showSummaryCoverInPost = true
 # imageZoomableInPost = true
 # showPrevNextPost = true
+# showSharesInPost = true
 # reorderShares = ["x", "facebook", "whatsapp"]
 
 # [params.navItems]
