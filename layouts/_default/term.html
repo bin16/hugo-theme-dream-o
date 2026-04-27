@@ -11,7 +11,7 @@
 {{ end }}
   <div class="md:basis-[200px] lg:basis-[300px] p-4 prose dark:prose-invert">
     <h1 class="text-2xl">
-      {{- .Title -}} 123
+      {{- .Title -}}
     </h1>
     <p class="text-sm">
       {{- T "article" (len .Pages) -}}
@@ -24,7 +24,7 @@
         {{- $name := .Name }}
         {{- with site.GetPage (printf "/%s/%s" $type $name) }}
           <a href="{{ .RelPermalink }}" class="badge h-6 no-underline hover:badge-primary">
-            {{ .LinkTitle }} A 1 2
+            {{ .LinkTitle }}
           </a>
         {{- end }}
       {{ end }}
