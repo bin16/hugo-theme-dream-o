@@ -24,10 +24,14 @@
       {{- end -}}
     </p>
     <div class="flex flex-wrap gap-4 mt-6">
+      {{- $type := .Type }}
       {{ range .Data.Terms.Alphabetical }}
-      <a href="{{ .Page.RelPermalink }}" class="badge h-6 no-underline hover:badge-primary">
-        {{ .Page.LinkTitle }}
-      </a>
+        {{- $name := .Name }}
+        {{- with site.GetPage (printf "/%s/%s" $type $name) }}
+          <a href="{{ .RelPermalink }}" class="badge h-6 no-underline hover:badge-primary">
+            {{ .LinkTitle }}
+          </a>
+        {{- end }}
       {{ end }}
     </div>
   </div>
