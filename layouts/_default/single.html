@@ -82,13 +82,28 @@
 
       <section id="dream-single-post-content" itemprop="articleBody">
         {{ if and .Params.Cover site.Params.showSummaryCoverInPost }}
+          {{ $imgField := "" }}
           {{ $imgURL := "" }}
           {{ $imgCaption := "" }}
           {{ if reflect.IsMap .Params.cover }}
+            {{ $imgField = .Params.cover.image }}
             {{ $imgURL = .Params.cover.image }}
             {{ $imgCaption = .Params.cover.caption }}
           {{ else if .Params.cover }}
+            {{ $imgField = .Params.cover }}
             {{ $imgURL = .Params.cover }}
+          {{ end }}
+
+          {{ if (urls.Parse $imgField).IsAbs }}
+            {{ $imgURL = $imgField }}
+          {{ else }}
+
+            {{- with .Page.Resources.GetMatch $imgField -}}
+              {{- $imgURL = .RelPermalink -}}
+            {{- else -}}
+              {{- $imgURL = $imgField | absURL -}}
+            {{- end -}}
+
           {{ end }}
 
           <figure>
@@ -96,6 +111,9 @@
             {{ with $imgCaption }}
               <figcaption class="text-sm italic text-center mt-2">{{ . }}</figcaption>
             {{ end }}
+            <figcaption>
+              ???
+            </figcaption>
           </figure>
         {{ end }}
 
